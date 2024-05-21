@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<body id="home">
 
     <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
         <div class="container">
@@ -19,18 +19,19 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#home">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                 </ul>
-                <span class="navbar-text">
-                    Navbar text with an inline element
-                </span>
+
             </div>
         </div>
     </nav>
@@ -62,16 +63,15 @@
         </button>
     </div>
 
-    <section>
+    <section id="nosotros">
         <div class="container">
-
             <div class="row">
-                <div class="col-md-6">
-                    <h2>Nosotros</h2>
-                    <h3>Misión</h3>
-                    <p>Nuestra misión es ofrecer soluciones digitales innovadoras y de alta calidad que impulsen el éxito de nuestros clientes, ayudándolos a alcanzar sus objetivos empresariales a través de la tecnología y la creatividad.</p>
-                    <h3>Visión</h3>
-                    <p>Nos visualizamos como líderes en el campo de la consultoría y desarrollo de software, reconocidos por nuestra excelencia en el servicio al cliente, nuestra capacidad para adaptarnos a las necesidades cambiantes del mercado y nuestra contribución al crecimiento y la transformación digital de las empresas.</p>
+                <h2>Nosotros</h2>
+                <div id="aboutUs" class="col-md-6">
+                    <h3>Titulo 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <h3>Título 2</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 </div>
                 <div class="col-md-6">
                     <img src="assets/img/punitos.webp" class="img-fluid" alt="">
@@ -80,47 +80,47 @@
         </div>
     </section>
 
-    <section>
+    <section id="servicios">
         <div class="container">
-            <div class="row">
-                <h2>Servicios</h2>
+            <h2>Servicios</h2>
+            <div id="rowServices" class="row">
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h5 class="card-title">Consultoría digital</h5>
+                            <h5 class="card-title">t1</h5>
                         </div>
                         <div class="card-body">
-                            <p>Identificamos las fallas y conectamos los puntos entre tu negocio y tu estrategia digital. Nuestro equipo experto cuenta con años de experiencia en la definición de estrategias y hojas de ruta en función de tus objetivos específicos.</p>
+                            <p>p1</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h5 class="card-title">Soluciones multiexperiencia</h5>
+                            <h5 class="card-title">t2</h5>
                         </div>
                         <div class="card-body">
-                            <p>Deleitamos a las personas usuarias con experiencias interconectadas a través de aplicaciones web, móviles, interfaces conversacionales, digital twin, IoT y AR. Su arquitectura puede adaptarse y evolucionar para adaptarse a los cambios de tu organización.</p>
+                            <p>p2</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h5 class="card-title">Evolución de ecosistemas</h5>
+                            <h5 class="card-title">t3</h5>
                         </div>
                         <div class="card-body">
-                            <p>Ayudamos a las empresas a evolucionar y ejecutar sus aplicaciones de forma eficiente, desplegando equipos especializados en la modernización y el mantenimiento de ecosistemas técnicos. Creando soluciones robustas en tecnologías de vanguardia.</p>
+                            <p>p3</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-header">
-                            <h5 class="card-title">Soluciones Low-Code</h5>
+                            <h5 class="card-title">t4</h5>
                         </div>
                         <div class="card-body">
-                            <p>Traemos el poder de las soluciones low-code y no-code para ayudar a nuestros clientes a acelerar su salida al mercado y añadir valor. Aumentamos la productividad y la calidad, reduciendo los requisitos de cualificación de los desarrolladores.</p>
+                            <p>p4</p>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
         </div>
     </section>
 
-    <section>
+    <section id="contacto">
         <div class="container">
             <div class="row">
                 <h2>Contacto</h2>
@@ -159,11 +159,130 @@
     </section>
 
     <footer>
-        
+
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        //partimos con una constante que contiene un JSON, que corresponde a la salida esperada
+        const aboutUSCONST = {
+            "data": [{
+                    "mision": {
+                        "titulo": {
+                            "esp": "Misión"
+                        },
+                        "descripcion": {
+                            "esp": "Nuestra misión es ofrecer soluciones digitales innovadoras y de alta calidad que impulsen el éxito de nuestros clientes, ayudándolos a alcanzar sus objetivos empresariales a través de la tecnología y la creatividad."
+                        }
+                    }
+                },
+                {
+                    "vision": {
+                        "titulo": {
+                            "esp": "Visión"
+                        },
+                        "descripcion": {
+                            "esp": "Nos visualizamos como líderes en el campo de la consultoría y desarrollo de software, reconocidos por nuestra excelencia en el servicio al cliente, nuestra capacidad para adaptarnos a las necesidades cambiantes del mercado y nuestra contribución al crecimiento y la transformación digital de las empresas."
+                        }
+                    }
+                }
+            ]
+        };
+        //mostramos el contenido de la constante
+        console.log(aboutUSCONST);
 
+        //otra forma de simular el consumo de API
+        //fetch(url).then(respuesta => {...}.then(datos => {...}.catch(error => {...})));
+        fetch('assets/json/about-us.json')
+            .then(respuesta => {
+                // if (!respuesta.ok) {
+                if (respuesta.status != 200) {
+                    throw new Error('con el json');
+                }
+                return respuesta.json();
+            })
+            .then(datos => {
+                console.log(datos.data[0].mision.descripcion.esp);
+                console.log(datos.data[1].vision);
+                //DOM: Modelo de Objeto de Documento
+                const aboutUs = document.getElementById('aboutUs');
+                //vaciamos el contenido del div
+                aboutUs.innerHTML = '';
+                //creamos nuevos objetos
+                const titulo1 = document.createElement('h3');
+                const titulo2 = document.createElement('h3');
+                const parrafo1 = document.createElement('p');
+                const parrafo2 = document.createElement('p');
+                titulo1.innerText = datos.data[0].mision.titulo.esp;
+                titulo2.innerText = datos.data[1].vision.titulo.esp;
+                parrafo1.innerText = datos.data[0].mision.descripcion.esp;
+                parrafo2.innerText = datos.data[1].vision.descripcion.esp;
+                // console.log(aboutUs);}
+                //agregamos los objetos al aboutUs
+                aboutUs.appendChild(titulo1);
+                aboutUs.appendChild(parrafo1);
+                aboutUs.appendChild(titulo2);
+                aboutUs.appendChild(parrafo2);
+
+
+            })
+            .catch(error => {
+                console.error('Error en el fetch: ', error);
+            });
+
+        //pegaremos al endpoint generado en backend: services
+        fetch('http://localhost/backend-sec71-2024t1/v1/services/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ciisa',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(respuesta => {
+                if (respuesta.status != 200) {
+                    throw new Error('no tenemos acceso al endpoint');
+                }
+                return respuesta.json();
+            })
+            .then(datos => {
+                console.log(datos);
+                const totalColumnas = 12 / datos.data.length;
+                console.log('propiedad md-' + totalColumnas);
+                const rowServices = document.getElementById('rowServices');
+                rowServices.innerHTML = '';
+                datos.data.forEach(element => {
+                    console.log(element);
+                    if (element.activo == true) {
+                        const columna = document.createElement('div');
+                        columna.classList.add('col-md-' + totalColumnas);
+                        const tarjeta = document.createElement('div');
+                        tarjeta.classList.add('card');
+                        tarjeta.classList.add('h-100');
+                        const tarjetaHeader = document.createElement('div');
+                        tarjetaHeader.classList.add('card-header');
+                        const tarjetaBody = document.createElement('div');
+                        tarjetaBody.classList.add('card-body');
+                        const tarjetaFooter = document.createElement('div');
+                        tarjetaFooter.classList.add('card-footer');
+                        tarjetaFooter.innerHTML = '<a href="#contacto"><button onclick="cambiarServicio(`' + element.id + '`)">Contáctanos</button></a>'
+                        tarjetaHeader.innerHTML = '<h5 class="card-title">' + element.titulo.esp + '</h5>';
+                        tarjetaBody.innerHTML = '<p>' + element.texto.esp + '</p>';
+                        tarjeta.appendChild(tarjetaHeader);
+                        tarjeta.appendChild(tarjetaBody);
+                        tarjeta.appendChild(tarjetaFooter);
+                        columna.appendChild(tarjeta);
+                        rowServices.appendChild(columna);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Q penita: ', error);
+            })
+
+        function cambiarServicio(_parametro) {
+            alert(_parametro);
+        }
+    </script>
 </body>
 
 </html>

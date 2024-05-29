@@ -1,3 +1,34 @@
+<?php
+function getEndpointByToken($_endpoint, $_token)
+{
+    //echo 'endpoint: ' . $_endpoint . ' | token: ' . $_token;
+    //Configuracion de la solicitud con cURL
+    $ch = curl_init($_endpoint);
+    //configurar Headers
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer ' . $_token
+    ));
+    //configurar que contiene respuesta
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //ejecutar la solicitud / pegarle al endpoint
+    $respuesta = curl_exec($ch);
+    //verificar si existe una respuesta
+    if ($respuesta === false) {
+        return 'Error en la solicitud: ' . curl_error($ch);
+    }
+    //cerrar la sesion de cURL
+    curl_close($ch);
+    return $respuesta;
+}
+// echo 'esto es PHP';
+$endpointServices = getEndpointByToken('http://localhost/backend-sec71-2024t1/v1/services/', 'ciisa');
+// echo $endpointServices;
+//transformar el contenido del endpoint en formato JSON
+$endpointServices = json_encode($endpointServices);
+// echo $endpointServices;
+//echo 'la funcion devuelve: ' . getEndpointByToken('http://localhost/backend-sec71-2024t1/v1/services/', 'ciisa');
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -189,7 +220,7 @@
             ]
         };
         //mostramos el contenido de la constante
-        console.log(aboutUSCONST);
+        // console.log(aboutUSCONST);
 
         //otra forma de simular el consumo de API
         //fetch(url).then(respuesta => {...}.then(datos => {...}.catch(error => {...})));
@@ -202,8 +233,8 @@
                 return respuesta.json();
             })
             .then(datos => {
-                console.log(datos.data[0].mision.descripcion.esp);
-                console.log(datos.data[1].vision);
+                // console.log(datos.data[0].mision.descripcion.esp);
+                // console.log(datos.data[1].vision);
                 //DOM: Modelo de Objeto de Documento
                 const aboutUs = document.getElementById('aboutUs');
                 //vaciamos el contenido del div
@@ -231,53 +262,85 @@
             });
 
         //pegaremos al endpoint generado en backend: services
-        fetch('http://localhost/backend-sec71-2024t1/v1/services/', {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ciisa',
-                    'Content-Type': 'application/json'
+        // fetch('http://localhost/backend-sec71-2024t1/v1/services/', {
+        //         method: 'GET',
+        //         headers: {
+        //             'Authorization': 'Bearer ciisa',
+        //             'Content-Type': 'application/json'
+        //         }
+        //     })
+        //     .then(respuesta => {
+        //         if (respuesta.status != 200) {
+        //             throw new Error('no tenemos acceso al endpoint');
+        //         }
+        //         return respuesta.json();
+        //     })
+        //     .then(datos => {
+        //         printServices(datos);
+        //     })
+        //     .catch(error => {
+        //         console.error('Q penita: ', error);
+        //     });
+
+        const contenidoEndpointServices = JSON.parse(<?php echo $endpointServices ?>);
+        //console.log(contenidoEndpointServices);
+        printServices(contenidoEndpointServices);
+
+        function printServices(_datos) {
+            // console.log(datos);
+            let totalColumnasSM = 0;
+            let totalColumnasMD = 0;
+            let totalColumnasXL = 0;
+            _datos.data.forEach(element => {
+                if (element.activo == true) {
+                    totalColumnasXL++;
                 }
-            })
-            .then(respuesta => {
-                if (respuesta.status != 200) {
-                    throw new Error('no tenemos acceso al endpoint');
+            });
+
+            // const totalColumnas = 12 / _datos.data.length;
+            //¿cuantos elementos necesito generar?
+            //4 por fila
+            if (_datos.data.length <= 4) {
+                totalColumnasXL = Math.round(12 / totalColumnasXL);
+            } else {
+                totalColumnasXL = 3;
+            }
+            totalColumnasMD = Math.round(totalColumnasXL * 2);
+            totalColumnasSM = Math.round(totalColumnasXL * 2 * 2);
+            // console.log(totalColumnasXL);
+            // console.log(totalColumnasMD);
+            // console.log(totalColumnasSM);
+            // console.log('propiedad md-' + totalColumnas);
+            const rowServices = document.getElementById('rowServices');
+            rowServices.innerHTML = '';
+            _datos.data.forEach(element => {
+                // console.log(element);
+                if (element.activo == true) {
+                    const columna = document.createElement('div');
+                    columna.classList.add('col-sm-' + totalColumnasSM);
+                    columna.classList.add('col-md-' + totalColumnasMD);
+                    columna.classList.add('col-xl-' + totalColumnasXL);
+                    columna.classList.add('my-2');
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('card');
+                    tarjeta.classList.add('h-100');
+                    const tarjetaHeader = document.createElement('div');
+                    tarjetaHeader.classList.add('card-header');
+                    const tarjetaBody = document.createElement('div');
+                    tarjetaBody.classList.add('card-body');
+                    const tarjetaFooter = document.createElement('div');
+                    tarjetaFooter.classList.add('card-footer');
+                    tarjetaFooter.innerHTML = '<a href="#contacto"><button onclick="cambiarServicio(`' + element.id + '`)">Contáctanos</button></a>'
+                    tarjetaHeader.innerHTML = '<h5 class="card-title">' + element.titulo.esp + '</h5>';
+                    tarjetaBody.innerHTML = '<p>' + element.texto.esp + '</p>';
+                    tarjeta.appendChild(tarjetaHeader);
+                    tarjeta.appendChild(tarjetaBody);
+                    tarjeta.appendChild(tarjetaFooter);
+                    columna.appendChild(tarjeta);
+                    rowServices.appendChild(columna);
                 }
-                return respuesta.json();
-            })
-            .then(datos => {
-                console.log(datos);
-                const totalColumnas = 12 / datos.data.length;
-                console.log('propiedad md-' + totalColumnas);
-                const rowServices = document.getElementById('rowServices');
-                rowServices.innerHTML = '';
-                datos.data.forEach(element => {
-                    console.log(element);
-                    if (element.activo == true) {
-                        const columna = document.createElement('div');
-                        columna.classList.add('col-md-' + totalColumnas);
-                        const tarjeta = document.createElement('div');
-                        tarjeta.classList.add('card');
-                        tarjeta.classList.add('h-100');
-                        const tarjetaHeader = document.createElement('div');
-                        tarjetaHeader.classList.add('card-header');
-                        const tarjetaBody = document.createElement('div');
-                        tarjetaBody.classList.add('card-body');
-                        const tarjetaFooter = document.createElement('div');
-                        tarjetaFooter.classList.add('card-footer');
-                        tarjetaFooter.innerHTML = '<a href="#contacto"><button onclick="cambiarServicio(`' + element.id + '`)">Contáctanos</button></a>'
-                        tarjetaHeader.innerHTML = '<h5 class="card-title">' + element.titulo.esp + '</h5>';
-                        tarjetaBody.innerHTML = '<p>' + element.texto.esp + '</p>';
-                        tarjeta.appendChild(tarjetaHeader);
-                        tarjeta.appendChild(tarjetaBody);
-                        tarjeta.appendChild(tarjetaFooter);
-                        columna.appendChild(tarjeta);
-                        rowServices.appendChild(columna);
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Q penita: ', error);
-            })
+            });
+        }
 
         function cambiarServicio(_parametro) {
             alert(_parametro);
